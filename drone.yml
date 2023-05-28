@@ -20,3 +20,21 @@ steps:
     insecure: true
     build_args_from_env:
     - LAKE_STATS_API_URL
+- name: ssh-docker-host
+  image: appleboy/drone-ssh
+  environment:
+    USERPASS:
+      from_secret: drone-service-user-pass
+  settings:
+    host: 192.168.1.136
+    port: 22
+    username: drone-service-user
+    password: 
+      from_secret: drone-service-user-password
+    envs: [ USERPASS ]
+    script:
+    - echo $${USERPASS} | sudo -S ls /var/lib/docker/volumes/portainer_data/_data/compose/
+    - echo $${USERPASS} | sudo -S docker-compose -f /var/lib/docker/volumes/portainer_data/_data/compose/110/docker-compose.yml pull
+    - echo $${USERPASS} | sudo -S docker stop lake_stats_front
+    - echo $${USERPASS} | sudo -S docker rm lake_stats_front
+    - echo $${USERPASS} | sudo -S docker-compose -f /var/lib/docker/volumes/portainer_data/_data/compose/110/docker-compose.yml up --detach
