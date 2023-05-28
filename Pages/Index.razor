@@ -22,7 +22,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var request = new HttpRequestMessage(HttpMethod.Get, Environment.GetEnvironmentVariable("LAKE_STATS_API_URL"));
+        var request = new HttpRequestMessage(HttpMethod.Get, Environment.GetEnvironmentVariable("LAKESTATSAPIURL"));
 
         var client = ClientFactory.CreateClient();
 
