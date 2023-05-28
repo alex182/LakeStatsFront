@@ -1,9 +1,21 @@
 ﻿kind: pipeline
 type: docker
-name: Lake_Stats_FrontEnd
+name: Lake_Stats_Front
 
 steps:
 - name: greeting
   image: alpine
   commands:
   - echo hello world FrontEnd
+- name: docker build
+  image: plugins/docker
+  command:
+  settings:
+    repo: 192.168.1.136:9005/lake_stats_front
+    registry: 192.168.1.136:9005
+    tags: latest
+    insecure: true
+    secrets:
+      - source: docker-build-args
+        target: plugin_build_args
+    build_args_from_env: $plugin_build_args

@@ -9,7 +9,7 @@
 
 @if (lakeWaterTemperature.Results.Any())
 {
-   <h1>Current Lake Temperature</h1>
+   <h1>Current Lake Temperature.</h1>
    <h2>@lakeWaterTemperature.Results[0].Temperature °F</h2> 
 }
 
@@ -22,7 +22,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var request = new HttpRequestMessage(HttpMethod.Get, "http://192.168.1.136:49166/WaterTemperature/a8404113f1873e43");
+        var request = new HttpRequestMessage(HttpMethod.Get, Environment.GetEnvironmentVariable("LAKE_STATS_API_URL"));
 
         var client = ClientFactory.CreateClient();
 

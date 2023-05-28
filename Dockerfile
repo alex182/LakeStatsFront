@@ -7,6 +7,7 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
+ENV LAKE_STATS_API_URL ""
 EXPOSE 80
 EXPOSE 443
 
