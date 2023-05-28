@@ -10,12 +10,13 @@ steps:
 - name: docker build
   image: plugins/docker
   command:
+  environment:
+    LAKE_STATS_API_URL:
+      from_secret: LAKE_STATS_API_URL
   settings:
     repo: 192.168.1.136:9005/lake_stats_front
     registry: 192.168.1.136:9005
     tags: latest
     insecure: true
-    secrets:
-      - source: docker-build-args
-        target: plugin_build_args
-    build_args_from_env: $plugin_build_args
+    build_args_from_env:
+    - LAKE_STATS_API_URL
