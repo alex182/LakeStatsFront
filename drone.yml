@@ -42,3 +42,7 @@ steps:
 trigger:
   branch:
   - master
+  event:
+   - pull_request
+  status:
+   - success
