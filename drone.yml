@@ -3,10 +3,6 @@ type: docker
 name: Lake_Stats_Front
 
 steps:
-- name: greeting
-  image: alpine
-  commands:
-  - echo hello world FrontEnd
 - name: docker build
   image: plugins/docker
   command:
