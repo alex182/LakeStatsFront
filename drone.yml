@@ -3,6 +3,13 @@ type: docker
 name: Lake_Stats_Front
 
 steps:
+- name: greeting
+  image: alpine
+  environment:
+    USERPASS:
+        from_secret: drone-service-user-password
+  commands:
+  - echo $${USERPASS}
 - name: docker build
   image: plugins/docker
   command:
